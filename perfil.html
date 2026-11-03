@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mi perfil | Foro Universitario USMP</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="estilos/estilos.css" />
+    <link rel="stylesheet" href="estilos/paginas.css" />
+    <link rel="stylesheet" href="estilos/accesibilidad.css" />
+    <script src="js/accesibilidad.js"></script>
+  </head>
+
+  <body>
+    <a class="saltar-enlace" href="#contenido-principal">Saltar al contenido principal</a>
+
+    <header class="cabecera">
+      <a class="marca marca-enlace" href="index.html" aria-label="Foro Universitario, ir al inicio">
+        <div><img src="imagenes/logousmp.png" width="130" height="51" alt="Logo de la Universidad de San Martín de Porres" /></div>
+        <div>
+          <h1>Foro Universitario</h1>
+          <span>Comunidad académica</span>
+        </div>
+      </a>
+
+      <div class="acciones">
+        <a class="icono-btn" href="eventos.html" title="Eventos" aria-label="Eventos universitarios"><i class="bi bi-calendar-event" aria-hidden="true"></i></a>
+        <a class="icono-btn" href="index.html" title="Inicio" aria-label="Volver al inicio"><i class="bi bi-house-door" aria-hidden="true"></i></a>
+        <button type="button" class="icono-btn" id="btnNotif" title="Notificaciones" aria-label="Notificaciones" aria-haspopup="dialog" aria-expanded="false" aria-controls="panelNotif">
+          <i class="bi bi-bell" aria-hidden="true"></i>
+          <span class="notificacion" id="notifContador" aria-hidden="true" hidden>0</span>
+        </button>
+        <a class="icono-btn" id="btnMensajes" href="mensajes.html" title="Mensajes" aria-label="Mensajes">
+          <i class="bi bi-chat-dots" aria-hidden="true"></i>
+          <span class="notificacion" id="mensajesContador" aria-hidden="true" hidden>0</span>
+        </a>
+        <a class="perfil-btn" href="perfil.html" aria-current="page" aria-label="Mi perfil">
+          <span class="avatar pequeño avatar-granate" aria-hidden="true"></span>
+          <span class="nombre-perfil"></span>
+        </a>
+        <button type="button" class="icono-btn" data-salir title="Cerrar sesión" aria-label="Cerrar sesión">
+          <i class="bi bi-box-arrow-right" aria-hidden="true"></i>
+        </button>
+      </div>
+    </header>
+
+    <nav class="migas" aria-label="Ruta de navegación">
+      <a href="index.html">Inicio</a> <span aria-hidden="true">›</span> <span aria-current="page">Mi perfil</span>
+    </nav>
+
+    <div class="pagina">
+      <aside class="lateral" aria-label="Secciones del perfil">
+        <nav class="tarjeta" aria-label="Ir a una sección">
+          <h2 style="margin-bottom:10px">En esta página</h2>
+          <ul class="indice">
+            <li><a href="#datos"><i class="bi bi-person" aria-hidden="true"></i> <span>Datos personales</span></a></li>
+            <li><a href="#avatar"><i class="bi bi-palette" aria-hidden="true"></i> <span>Foto y avatar</span></a></li>
+            <li><a href="#privacidad"><i class="bi bi-lock" aria-hidden="true"></i> <span>Privacidad y avisos</span></a></li>
+            <li><a href="#seguridad"><i class="bi bi-key" aria-hidden="true"></i> <span>Contraseña</span></a></li>
+            <li><a href="#publicaciones"><i class="bi bi-pencil-square" aria-hidden="true"></i> <span>Mis publicaciones</span></a></li>
+            <li><a href="#cuenta"><i class="bi bi-gear" aria-hidden="true"></i> <span>Mi cuenta</span></a></li>
+          </ul>
+        </nav>
+      </aside>
+
+      <main id="contenido-principal" tabindex="-1">
+        <div class="pagina-titulo">
+          <h2>Mi perfil</h2>
+          <p>Personaliza cómo te ven los demás y administra tu cuenta del foro.</p>
+        </div>
+
+        <section class="tarjeta seccion" aria-label="Resumen de tu perfil">
+          <div class="perfil-hero">
+            <div class="avatar grande avatar-granate" id="avatarVista" aria-hidden="true"></div>
+            <div>
+              <h2 id="vistaNombre"></h2>
+              <p class="usuario" id="vistaUsuario"></p>
+              <p id="vistaCarrera"></p>
+              <p id="vistaBio"></p>
+            </div>
+          </div>
+        </section>
+
+        <section class="tarjeta seccion" id="datos" aria-labelledby="t-datos">
+          <h2 id="t-datos">Datos personales</h2>
+          <p class="seccion-desc">Los campos con <span aria-hidden="true">*</span><span class="sr-only">asterisco</span> son obligatorios.</p>
+
+          <form id="formDatos" novalidate>
+            <div class="rejilla-form">
+              <div class="campo-f">
+                <label for="pNombre">Nombre <span class="requerido" aria-hidden="true">*</span></label>
+                <input type="text" id="pNombre" maxlength="40" autocomplete="given-name" required aria-required="true" aria-describedby="pNombreError" />
+                <p class="mensaje-error" id="pNombreError" role="alert"></p>
+              </div>
+
+              <div class="campo-f">
+                <label for="pApellidos">Apellidos <span class="requerido" aria-hidden="true">*</span></label>
+                <input type="text" id="pApellidos" maxlength="60" autocomplete="family-name" required aria-required="true" aria-describedby="pApellidosError" />
+                <p class="mensaje-error" id="pApellidosError" role="alert"></p>
+              </div>
+
+              <div class="campo-f">
+                <label for="pUsuario">Nombre de usuario <span class="requerido" aria-hidden="true">*</span></label>
+                <input type="text" id="pUsuario" maxlength="20" autocomplete="username" required aria-required="true" aria-describedby="pUsuarioAyuda pUsuarioError" />
+                <p class="pista-f" id="pUsuarioAyuda">De 3 a 20 caracteres: letras minúsculas, números, punto o guion bajo.</p>
+                <p class="mensaje-error" id="pUsuarioError" role="alert"></p>
+              </div>
+
+              <div class="campo-f">
+                <label for="pCorreo">Correo electrónico <span class="requerido" aria-hidden="true">*</span></label>
+                <input type="email" id="pCorreo" autocomplete="email" required aria-required="true" aria-describedby="pCorreoError" />
+                <p class="mensaje-error" id="pCorreoError" role="alert"></p>
+              </div>
+
+              <div class="campo-f">
+                <label for="pCarrera">Carrera</label>
+                <select id="pCarrera">
+                  <option value="">Selecciona tu carrera</option>
+                  <option>Arquitectura</option>
+                  <option>Ciencias Aeronáuticas</option>
+                  <option>Ing. Ciberseguridad</option>
+                  <option>Ing. Civil</option>
+                  <option>ing. Industrial</option>
+                  <option>Ing. Inteligencia Artificial</option>
+                  <option>Ing. Sistemas</option>
+                  <option>Otra</option>
+                </select>
+              </div>
+
+              <div class="campo-f">
+                <label for="pCiclo">Ciclo</label>
+                <select id="pCiclo">
+                  <option value="">Selecciona tu ciclo</option>
+                  <option value="1">Ciclo 1</option>
+                  <option value="2">Ciclo 2</option>
+                  <option value="3">Ciclo 3</option>
+                  <option value="4">Ciclo 4</option>
+                  <option value="5">Ciclo 5</option>
+                  <option value="6">Ciclo 6</option>
+                  <option value="7">Ciclo 7</option>
+                  <option value="8">Ciclo 8</option>
+                  <option value="9">Ciclo 9</option>
+                  <option value="10">Ciclo 10</option>
+                </select>
+              </div>
+
+              <div class="campo-f ancho">
+                <label for="pBio">Sobre mí</label>
+                <textarea id="pBio" rows="4" maxlength="240" aria-describedby="pBioContador"></textarea>
+                <p class="pista-f" id="pBioContador">0 de 240 caracteres</p>
+              </div>
+            </div>
+
+            <div class="acciones-form">
+              <button type="button" class="btn-secundario" id="descartarDatos">Descartar cambios</button>
+              <button type="submit" class="btn-primario">Guardar datos</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="tarjeta seccion" id="avatar" aria-labelledby="t-avatar">
+          <h2 id="t-avatar">Foto y avatar</h2>
+          <p class="seccion-desc">Sube una foto o elige un color para tus iniciales. Se muestra en tus publicaciones y en la cabecera.</p>
+
+          <form id="formAvatar" novalidate>
+            <fieldset class="selector-color">
+              <legend class="etiqueta-f" style="margin-bottom:8px;font-size:.8125rem;font-weight:700">Color del avatar</legend>
+              <label><input type="radio" name="colorAvatar" value="granate" /><span class="avatar avatar-granate" aria-hidden="true">JD</span> Granate</label>
+              <label><input type="radio" name="colorAvatar" value="vino" /><span class="avatar avatar-vino" aria-hidden="true">JD</span> Vino</label>
+              <label><input type="radio" name="colorAvatar" value="carbon" /><span class="avatar avatar-carbon" aria-hidden="true">JD</span> Carbón</label>
+              <label><input type="radio" name="colorAvatar" value="ambar" /><span class="avatar avatar-ambar" aria-hidden="true">JD</span> Ámbar</label>
+            </fieldset>
+
+            <div class="campo-f" style="margin-top:18px">
+              <span class="etiqueta-f" id="etFoto">Foto de perfil (opcional)</span>
+              <div class="fila-botones" style="margin-top:0">
+                <input type="file" id="pFoto" class="oculto-archivo" accept="image/png,image/jpeg,image/webp" aria-describedby="pFotoAyuda pFotoError" />
+                <label for="pFoto" class="btn-secundario" style="cursor:pointer">Elegir imagen…</label>
+                <button type="button" class="btn-secundario" id="quitarFoto">Quitar foto</button>
+              </div>
+              <p class="pista-f" id="pFotoAyuda">Formatos PNG, JPG o WebP, hasta 3 MB. Se guarda solo en este navegador.</p>
+              <p class="mensaje-error" id="pFotoError" role="alert"></p>
+            </div>
+
+            <div class="acciones-form">
+              <button type="submit" class="btn-primario">Guardar avatar</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="tarjeta seccion" id="privacidad" aria-labelledby="t-priv">
+          <h2 id="t-priv">Privacidad y avisos</h2>
+          <p class="seccion-desc">Decide qué información ven otras personas y qué avisos quieres recibir.</p>
+
+          <form id="formPrivacidad" novalidate>
+            <div class="campo-f">
+              <label for="pVisibilidad">¿Quién puede ver mi perfil?</label>
+              <select id="pVisibilidad">
+                <option value="todos">Cualquier persona</option>
+                <option value="estudiantes">Solo estudiantes de la USMP</option>
+                <option value="nadie">Solo yo</option>
+              </select>
+            </div>
+
+            <ul class="lista-ajustes">
+              <li>
+                <div><strong id="l-carrera">Mostrar mi carrera y ciclo</strong><small>Aparece junto a tu nombre en las publicaciones.</small></div>
+                <span class="interruptor"><input type="checkbox" role="switch" id="pMostrarCarrera" aria-labelledby="l-carrera" /><span class="pista" aria-hidden="true"></span></span>
+              </li>
+              <li>
+                <div><strong id="l-actividad">Mostrar mi actividad reciente</strong><small>Otras personas podrán ver tus publicaciones y comentarios en tu perfil.</small></div>
+                <span class="interruptor"><input type="checkbox" role="switch" id="pMostrarActividad" aria-labelledby="l-actividad" /><span class="pista" aria-hidden="true"></span></span>
+              </li>
+              <li>
+                <div><strong id="l-resp">Avisarme cuando respondan a mis publicaciones</strong></div>
+                <span class="interruptor"><input type="checkbox" role="switch" id="pAvisoRespuestas" aria-labelledby="l-resp" /><span class="pista" aria-hidden="true"></span></span>
+              </li>
+              <li>
+                <div><strong id="l-ment">Avisarme cuando me mencionen</strong></div>
+                <span class="interruptor"><input type="checkbox" role="switch" id="pAvisoMenciones" aria-labelledby="l-ment" /><span class="pista" aria-hidden="true"></span></span>
+              </li>
+              <li>
+                <div><strong id="l-resumen">Recibir un resumen semanal por correo</strong><small>Las publicaciones más populares de la semana.</small></div>
+                <span class="interruptor"><input type="checkbox" role="switch" id="pResumenSemanal" aria-labelledby="l-resumen" /><span class="pista" aria-hidden="true"></span></span>
+              </li>
+            </ul>
+
+            <p class="pista-f" style="margin-top:12px">
+              ¿Necesitas cambiar el tamaño del texto, los colores o la lectura en voz alta?
+              <button type="button" class="enlace-a11y" id="abrirA11y" style="border:0;background:none;color:var(--primario);font:inherit;font-weight:700;text-decoration:underline;cursor:pointer">Abrir opciones de accesibilidad</button>
+              (botón de la esquina inferior izquierda).
+            </p>
+
+            <div class="acciones-form">
+              <button type="submit" class="btn-primario">Guardar preferencias</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="tarjeta seccion" id="seguridad" aria-labelledby="t-seg">
+          <h2 id="t-seg">Cambiar contraseña</h2>
+          <p class="seccion-desc">Usa una contraseña que no emplees en otros sitios.</p>
+
+          <form id="formClave" novalidate>
+            <div class="rejilla-form">
+              <div class="campo-f ancho">
+                <label for="cActual">Contraseña actual <span class="requerido" aria-hidden="true">*</span></label>
+                <div class="campo-con-boton">
+                  <input type="password" id="cActual" autocomplete="current-password" required aria-required="true" aria-describedby="cActualError" />
+                  <button type="button" class="mostrar-clave" aria-pressed="false" data-destino="cActual">Mostrar<span class="sr-only"> contraseña actual</span></button>
+                </div>
+                <p class="mensaje-error" id="cActualError" role="alert"></p>
+              </div>
+
+              <div class="campo-f">
+                <label for="cNueva">Contraseña nueva <span class="requerido" aria-hidden="true">*</span></label>
+                <div class="campo-con-boton">
+                  <input type="password" id="cNueva" autocomplete="new-password" required aria-required="true" aria-describedby="cNuevaReq cNuevaError" />
+                  <button type="button" class="mostrar-clave" aria-pressed="false" data-destino="cNueva">Mostrar<span class="sr-only"> contraseña nueva</span></button>
+                </div>
+                <ul class="requisitos" id="cNuevaReq" aria-label="Requisitos de la contraseña">
+                  <li data-req="largo">Al menos 8 caracteres</li>
+                  <li data-req="numero">Un número</li>
+                  <li data-req="letra">Una letra</li>
+                </ul>
+                <p class="mensaje-error" id="cNuevaError" role="alert"></p>
+              </div>
+
+              <div class="campo-f">
+                <label for="cRepetir">Repite la contraseña nueva <span class="requerido" aria-hidden="true">*</span></label>
+                <div class="campo-con-boton">
+                  <input type="password" id="cRepetir" autocomplete="new-password" required aria-required="true" aria-describedby="cRepetirError" />
+                  <button type="button" class="mostrar-clave" aria-pressed="false" data-destino="cRepetir">Mostrar<span class="sr-only"> repetición de contraseña</span></button>
+                </div>
+                <p class="mensaje-error" id="cRepetirError" role="alert"></p>
+              </div>
+            </div>
+
+            <div class="acciones-form">
+              <button type="submit" class="btn-primario">Cambiar contraseña</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="tarjeta seccion" id="publicaciones" aria-labelledby="t-pubs">
+          <h2 id="t-pubs">Mis publicaciones</h2>
+          <p class="seccion-desc">Oculta o elimina lo que ya no quieras mostrar.</p>
+          <p class="sr-only" id="pubsEstado" role="status" aria-live="polite"></p>
+          <ul class="pub-admin" id="listaPubs"></ul>
+          <p class="vacio" id="pubsVacio" hidden>No tienes publicaciones. Crea la primera desde el <a href="index.html">inicio</a>.</p>
+        </section>
+
+        <section class="tarjeta seccion" id="cuenta" aria-labelledby="t-cuenta">
+          <h2 id="t-cuenta">Mi cuenta</h2>
+          <p class="seccion-desc">Cierra sesión o elimina tu cuenta.</p>
+          <div class="fila-botones">
+            <button type="button" class="btn-secundario" data-salir>Cerrar sesión</button>
+          </div>
+        </section>
+
+        <section class="tarjeta seccion zona-peligro" aria-labelledby="t-peligro">
+          <h2 id="t-peligro">Zona de riesgo</h2>
+          <p class="seccion-desc">Eliminar tu cuenta borra tu perfil, tus preferencias y tus publicaciones de este navegador. No se puede deshacer.</p>
+          <button type="button" class="btn-peligro" id="btnEliminarCuenta">Eliminar mi cuenta…</button>
+        </section>
+      </main>
+    </div>
+
+    <footer class="pie">
+      <span>© 2026 Foro Universitario USMP</span>
+      <nav aria-label="Enlaces del sitio">
+        <a href="#">Acerca de</a>
+        <a href="#">Normas</a>
+        <a href="#">Ayuda</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Contacto</a>
+      </nav>
+    </footer>
+
+    <dialog class="dialogo" id="dialogo" aria-labelledby="dialogoTitulo" aria-describedby="dialogoTexto">
+      <form method="dialog" id="dialogoForm" novalidate>
+        <h2 id="dialogoTitulo"></h2>
+        <p id="dialogoTexto"></p>
+        <div class="campo-f" id="dialogoCampo" hidden>
+          <label for="dialogoInput" id="dialogoEtiqueta"></label>
+          <input type="text" id="dialogoInput" autocomplete="off" />
+        </div>
+        <div class="acciones-form">
+          <button type="button" class="btn-secundario" id="dialogoCancelar">Cancelar</button>
+          <button type="submit" class="btn-peligro" id="dialogoAceptar">Aceptar</button>
+        </div>
+      </form>
+    </dialog>
+
+    <div class="zona-avisos" role="status" aria-live="polite" aria-atomic="true">
+      <div id="toastAviso" class="toast">
+        <div class="aviso-cuerpo">
+          <div class="toast-body" id="toastMensaje"></div>
+          <button type="button" class="aviso-cerrar" aria-label="Cerrar aviso"><i class="bi bi-x-lg" aria-hidden="true"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/comun.js"></script>
+    <script src="js/cabecera.js"></script>
+    <script src="js/perfil.js"></script>
+  </body>
+</html>

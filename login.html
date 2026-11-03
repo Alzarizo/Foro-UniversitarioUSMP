@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Iniciar sesión | FORO USMP</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="estilos/login-estilos.css" />
+    <link rel="stylesheet" href="estilos/accesibilidad.css" />
+    <script src="js/accesibilidad.js"></script>
+  </head>
+  <body data-publica>
+    <main class="login-wrapper">
+      <div class="flip-scene" id="flipScene">
+        <div class="flip-card">
+          <section
+            class="glass-circle front"
+            id="caraLogin"
+            aria-labelledby="tituloLogin"
+          >
+            <div class="accent-ring" aria-hidden="true"></div>
+
+            <form class="login-form" id="formLogin" novalidate>
+              <h1 id="tituloLogin">Ingresar</h1>
+              <p class="subtitle">Inicia sesión en tu cuenta</p>
+              <p class="estado-form" id="estadoLogin" role="status"></p>
+
+              <div class="campo">
+                <label for="loginUsuario">Usuario</label>
+                <div class="input-box">
+                  <i class="bi bi-person-fill" aria-hidden="true"></i>
+                  <input
+                    type="text"
+                    id="loginUsuario"
+                    name="usuario"
+                    autocomplete="username"
+                    required
+                    aria-required="true"
+                    aria-describedby="loginUsuarioError"
+                    data-vacio="Escribe tu usuario."
+                  />
+                </div>
+                <p class="mensaje-error" id="loginUsuarioError" role="alert"></p>
+              </div>
+
+              <div class="campo">
+                <label for="loginPass">Contraseña</label>
+                <div class="input-box">
+                  <i class="bi bi-lock-fill" aria-hidden="true"></i>
+                  <input
+                    type="password"
+                    id="loginPass"
+                    name="contrasena"
+                    autocomplete="current-password"
+                    required
+                    aria-required="true"
+                    aria-describedby="loginPassError"
+                    data-vacio="Escribe tu contraseña."
+                  />
+                  <button
+                    type="button"
+                    class="mostrar-pass"
+                    aria-label="Mostrar contraseña"
+                    aria-pressed="false"
+                    data-destino="loginPass"
+                  >
+                    <i class="bi bi-eye-fill" aria-hidden="true"></i>
+                  </button>
+                </div>
+                <p class="mensaje-error" id="loginPassError" role="alert"></p>
+              </div>
+
+              <div class="forgot">
+                <label class="remember" for="rememberSwitch">
+                  <input
+                    type="checkbox"
+                    role="switch"
+                    id="rememberSwitch"
+                    class="switch-input"
+                  />
+                  <span class="switch" aria-hidden="true"></span>
+                  Recordarme
+                </label>
+                <a href="#">¿Olvidaste tu contraseña?</a>
+              </div>
+
+              <button type="submit" class="boton">Ingresar</button>
+
+              <p class="signup-text">
+                ¿No tienes una cuenta?
+                <button type="button" class="enlace-boton" id="toSignup">
+                  Regístrate
+                </button>
+              </p>
+            </form>
+          </section>
+
+          <section
+            class="glass-circle back"
+            id="caraRegistro"
+            aria-labelledby="tituloRegistro"
+            inert
+          >
+            <div class="accent-ring" aria-hidden="true"></div>
+
+            <form class="login-form" id="formRegistro" novalidate>
+              <h1 id="tituloRegistro">Registro</h1>
+              <p class="subtitle">Crea tu cuenta</p>
+
+              <div class="campo">
+                <label for="regNombre">Nombre completo</label>
+                <div class="input-box">
+                  <i class="bi bi-person-fill" aria-hidden="true"></i>
+                  <input
+                    type="text"
+                    id="regNombre"
+                    name="nombre"
+                    autocomplete="name"
+                    required
+                    aria-required="true"
+                    aria-describedby="regNombreError"
+                    data-vacio="Escribe tu nombre completo."
+                  />
+                </div>
+                <p class="mensaje-error" id="regNombreError" role="alert"></p>
+              </div>
+
+              <div class="campo">
+                <label for="regCorreo">Correo electrónico</label>
+                <div class="input-box">
+                  <i class="bi bi-envelope-fill" aria-hidden="true"></i>
+                  <input
+                    type="email"
+                    id="regCorreo"
+                    name="correo"
+                    autocomplete="email"
+                    placeholder="nombre@correo.com"
+                    required
+                    aria-required="true"
+                    aria-describedby="regCorreoError"
+                    data-vacio="Escribe tu correo electrónico."
+                  />
+                </div>
+                <p class="mensaje-error" id="regCorreoError" role="alert"></p>
+              </div>
+
+              <div class="campo">
+                <label for="regPass">Contraseña (mínimo 8 caracteres)</label>
+                <div class="input-box">
+                  <i class="bi bi-lock-fill" aria-hidden="true"></i>
+                  <input
+                    type="password"
+                    id="regPass"
+                    name="nueva-contrasena"
+                    autocomplete="new-password"
+                    minlength="8"
+                    required
+                    aria-required="true"
+                    aria-describedby="regPassError"
+                    data-vacio="Crea una contraseña de al menos 8 caracteres."
+                  />
+                  <button
+                    type="button"
+                    class="mostrar-pass"
+                    aria-label="Mostrar contraseña"
+                    aria-pressed="false"
+                    data-destino="regPass"
+                  >
+                    <i class="bi bi-eye-fill" aria-hidden="true"></i>
+                  </button>
+                </div>
+                <p class="mensaje-error" id="regPassError" role="alert"></p>
+              </div>
+
+              <button type="submit" class="boton">Crear cuenta</button>
+
+              <p class="signup-text">
+                ¿Ya tienes una cuenta?
+                <button type="button" class="enlace-boton" id="toLogin">
+                  Ingresa
+                </button>
+              </p>
+            </form>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <script src="js/comun.js"></script>
+    <script src="js/login.js"></script>
+  </body>
+</html>

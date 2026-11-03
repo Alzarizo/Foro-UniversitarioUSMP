@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eventos | Foro Universitario USMP</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    />
+    <link rel="stylesheet" href="estilos/estilos.css" />
+    <link rel="stylesheet" href="estilos/paginas.css" />
+    <link rel="stylesheet" href="estilos/accesibilidad.css" />
+    <script src="js/accesibilidad.js"></script>
+  </head>
+
+  <body>
+    <a class="saltar-enlace" href="#contenido-principal">Saltar al contenido principal</a>
+
+    <header class="cabecera">
+      <a class="marca marca-enlace" href="index.html" aria-label="Foro Universitario, ir al inicio">
+        <div><img src="imagenes/logousmp.png" width="130" height="51" alt="Logo de la Universidad de San Martín de Porres" /></div>
+        <div>
+          <h1>Foro Universitario</h1>
+          <span>Comunidad académica</span>
+        </div>
+      </a>
+
+      <div class="acciones">
+        <a class="icono-btn" href="eventos.html" aria-current="page" title="Eventos" aria-label="Eventos universitarios (página actual)"><i class="bi bi-calendar-event" aria-hidden="true"></i></a>
+        <a class="icono-btn" href="index.html" title="Inicio" aria-label="Volver al inicio"><i class="bi bi-house-door" aria-hidden="true"></i></a>
+        <button type="button" class="icono-btn" id="btnNotif" title="Notificaciones" aria-label="Notificaciones" aria-haspopup="dialog" aria-expanded="false" aria-controls="panelNotif">
+          <i class="bi bi-bell" aria-hidden="true"></i>
+          <span class="notificacion" id="notifContador" aria-hidden="true" hidden>0</span>
+        </button>
+        <a class="icono-btn" id="btnMensajes" href="mensajes.html" title="Mensajes" aria-label="Mensajes">
+          <i class="bi bi-chat-dots" aria-hidden="true"></i>
+          <span class="notificacion" id="mensajesContador" aria-hidden="true" hidden>0</span>
+        </a>
+        <a class="perfil-btn" href="perfil.html" aria-label="Mi perfil">
+          <span class="avatar pequeño avatar-granate" aria-hidden="true"></span>
+          <span class="nombre-perfil"></span>
+        </a>
+        <button type="button" class="icono-btn" data-salir title="Cerrar sesión" aria-label="Cerrar sesión">
+          <i class="bi bi-box-arrow-right" aria-hidden="true"></i>
+        </button>
+      </div>
+    </header>
+
+    <nav class="migas" aria-label="Ruta de navegación">
+      <a href="index.html">Inicio</a> <span aria-hidden="true">›</span> <span aria-current="page">Eventos</span>
+    </nav>
+
+    <div class="pagina" style="grid-template-columns: minmax(0, 1fr) 290px">
+      <main id="contenido-principal" tabindex="-1">
+        <div class="pagina-titulo">
+          <h2>Eventos universitarios</h2>
+          <p>Ferias, talleres, charlas y actividades de la comunidad. Marca a cuáles asistirás y añádelos a tu calendario.</p>
+        </div>
+
+        <div class="barra-filtros" role="search" aria-label="Filtrar eventos">
+          <div class="campo-f">
+            <label for="buscarEvento">Buscar evento</label>
+            <input type="search" id="buscarEvento" placeholder="Título, lugar o tema…" autocomplete="off" />
+          </div>
+
+          <fieldset class="chips" id="chipsCategoria">
+            <legend class="etiqueta-f" style="font-size:.8125rem;font-weight:700;margin-bottom:6px">Categoría</legend>
+            <button type="button" class="chip" aria-pressed="true" data-cat="todos">Todos</button>
+            <button type="button" class="chip" aria-pressed="false" data-cat="academico">Académico</button>
+            <button type="button" class="chip" aria-pressed="false" data-cat="tecnologia">Tecnología</button>
+            <button type="button" class="chip" aria-pressed="false" data-cat="cultural">Cultural</button>
+            <button type="button" class="chip" aria-pressed="false" data-cat="deporte">Deporte</button>
+            <button type="button" class="chip" aria-pressed="false" data-cat="voluntariado">Voluntariado</button>
+          </fieldset>
+
+          <label class="casilla" for="verPasados">
+            <input type="checkbox" id="verPasados" />
+            Mostrar eventos pasados
+          </label>
+        </div>
+
+        <p id="estadoEventos" class="sr-only" role="status" aria-live="polite"></p>
+
+        <div id="contenidoEventos">
+          <noscript>Esta página necesita JavaScript para mostrar los eventos.</noscript>
+        </div>
+
+        <div id="sinEventos" class="sin-resultados oculto">
+          <div aria-hidden="true"><i class="bi bi-inbox"></i></div>
+          <h3>No hay eventos con esos filtros</h3>
+          <p>Prueba con otra palabra, otra categoría o activa «Mostrar eventos pasados».</p>
+        </div>
+      </main>
+
+      <aside class="lateral" aria-label="Mis eventos">
+        <section class="tarjeta" aria-labelledby="t-mis">
+          <div class="titulo-tarjeta">
+            <h2 id="t-mis"><i class="bi bi-calendar-check" aria-hidden="true"></i> Asistiré</h2>
+            <span id="contadorMis">0</span>
+          </div>
+          <ul class="mis-eventos" id="listaMis"></ul>
+          <p class="vacio" id="misVacio" style="padding:8px 0">Aún no marcaste ningún evento.</p>
+        </section>
+      </aside>
+    </div>
+
+    <footer class="pie">
+      <span>© 2026 Foro Universitario USMP</span>
+      <nav aria-label="Enlaces del sitio">
+        <a href="#">Acerca de</a>
+        <a href="#">Normas</a>
+        <a href="#">Ayuda</a>
+        <a href="#">Privacidad</a>
+        <a href="#">Contacto</a>
+      </nav>
+    </footer>
+
+    <div class="zona-avisos" role="status" aria-live="polite" aria-atomic="true">
+      <div id="toastAviso" class="toast">
+        <div class="aviso-cuerpo">
+          <div class="toast-body" id="toastMensaje"></div>
+          <button type="button" class="aviso-cerrar" aria-label="Cerrar aviso"><i class="bi bi-x-lg" aria-hidden="true"></i></button>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/comun.js"></script>
+    <script src="js/cabecera.js"></script>
+    <script src="js/eventos.js"></script>
+  </body>
+</html>
